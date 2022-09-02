@@ -11,6 +11,7 @@ export default function LotteryEntrance() {
     const dispatch = useNotification()
     const chainId = parseInt(chainIdHex)
     const lotteryAddress = chainId in contractAddress ? contractAddress[chainId][0] : null
+    console.log(lotteryAddress)
     const [entryFee, setEntryFee] = useState("0")
     const [numOfPlayers, setNumOfPlayers] = useState("0")
     const [recentWinner, setRecentWinner] = useState("0")
@@ -87,16 +88,19 @@ export default function LotteryEntrance() {
         })
     }
     return (
-        <div className="p-5">
-            <h1 className="py-4 px-4 font-bold text-3xl">Lottery</h1>
+        <div className="p-5" style={{ width: "70%", margin: "auto", textAlign: "center" }}>
+            <h1
+                className="py-4 px-4 font-bold text-7xl mt-2"
+                style={{ webkitTextStroke: "2px black" }}
+            >
+                Lottery
+            </h1>
             {lotteryAddress ? (
                 <>
                     <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 my-6 px-4 rounded ml-auto"
                         onClick={async () =>
                             await enterLottery({
-                                // onComplete:
-                                // onError:
                                 onSuccess: handleSuccess,
                                 onError: (error) => console.log(error),
                             })
